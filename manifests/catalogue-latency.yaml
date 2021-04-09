@@ -1,0 +1,43 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: catalogue-latency
+  namespace: litmus
+spec:
+  annotationCheck: 'false'
+  engineState: 'active'
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'sock-shop'
+    applabel: 'name=catalogue'
+    appkind: 'deployment'
+  chaosServiceAccount: litmus-admin
+  monitoring: true
+  jobCleanUpPolicy: 'retain'
+  experiments:
+    - name: pod-network-latency
+      spec:
+        components:
+          env:
+            - name: TARGET_CONTAINER
+              value: 'catalogue'
+
+            #Network interface inside target container
+            - name: NETWORK_INTERFACE
+              value: 'eth0'
+
+            - name: NETWORK_LATENCY
+              value: '500'
+
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+
+            # provide the name of container runtime
+            # for litmus LIB, it supports docker, containerd, crio
+            # for pumba LIB, it supports docker only
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'

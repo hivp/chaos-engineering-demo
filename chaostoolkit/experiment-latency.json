@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "title": "We can tolerate a small latency from internal services",
+  "description": "While we can tolerate a small latency between services, how far can we really delay before the user gets a poorer experience.",
+  "configuration": {
+    "front_url": {
+      "type": "env",
+      "key": "FRONT_URL",
+      "default": "http://localhost:30001/catalogue/"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "n/a",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "front-must-respond-ok",
+        "tolerance": 200,
+        "provider": {
+          "type": "http",
+          "timeout": [3, 5],
+          "url": "${front_url}"
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "inject-latency",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.crd.actions",
+        "func": "create_custom_object",
+        "arguments": {
+          "group": "chaos-mesh.org",
+          "plural": "networkchaos",
+          "version": "v1alpha1",
+          "resource": {
+            "apiVersion": "chaos-mesh.org/v1alpha1",
+            "kind": "NetworkChaos",
+            "metadata": {
+              "name": "delaying-catalogue",
+              "namespace": "default"
+            },
+            "spec": {
+              "action": "delay",
+              "mode": "one",
+              "selector": {
+                "namespaces": [
+                  "sock-shop"
+                ],
+                "labelSelectors": {
+                  "name": "catalogue"
+                }
+              },
+              "delay": {
+                "latency": "500ms"
+              }
+            }
+          }
+        }
+      },
+      "pauses": {
+        "before": 2,
+        "after": 10
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "remove-latency",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.crd.actions",
+        "func": "delete_custom_object",
+        "arguments": {
+          "group": "chaos-mesh.org",
+          "plural": "networkchaos",
+          "version": "v1alpha1",
+          "name": "delaying-catalogue"
+        }
+      }
+    }
+  ]
+}
