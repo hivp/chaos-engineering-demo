@@ -236,15 +236,15 @@ Reports can be generated from the output journal.json
 chaos report --export-format=pdf journal.json report.pdf
 ```
 
-The Chaos Mesh dashboard can be accesed to review the experiments:
+Chaos Mesh dashboard can be accesed to review the experiments:
 ![imagen](https://user-images.githubusercontent.com/11853819/114242796-7b050e00-9959-11eb-9273-2372ef6c4ec3.png)
 
 
 ## Conclusions
 
-- Experiments can be executed using Litmus Chaos or Chaostoolkiy+Chaos Mesh , or both
+- Experiments can be executed using Litmus Chaos or Chaostoolkit + Chaos Mesh , or both
 - Results have to be observed to improve resilience
-- In this demo, a weakness may have neen discovered in Catalogue of Sock-App app with 500ms latency
+- In this demo, a weakness may have been discovered in Catalogue of Sock-App app with 500ms latency
 
 ## Notes
 - Chaos Mesh has some problems to be used with Public Cloud K8s services, such as AKS, so Litmus is the option
