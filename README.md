@@ -250,6 +250,9 @@ Chaos Mesh dashboard can be accesed to review the experiments:
 - Chaos Mesh has some problems to be used with Public Cloud K8s services, such as AKS, so Litmus is the option
 
 
+## To-Do-List
+- Improve access to Sock-shop, Grafana and Chaos Mesh portal, using Ingress or Traefik instead of port-forward.
+
 ## References
 - Litmus Demo https://github.com/litmuschaos/litmus/tree/master/demo/sample-applications/sock-shop
 - Gremlin https://www.gremlin.com/
