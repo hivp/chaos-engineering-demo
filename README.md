@@ -187,7 +187,7 @@ kubectl describe chaosengine -n litmus catalogue-latency
 Verify that Catalogue of Sock Shop app is being impacted, we need to investigate.
 ![imagen](https://user-images.githubusercontent.com/11853819/114230008-96b2e900-9946-11eb-9d80-5d8b64c8fb4f.png)
 
-Observe the impact of chaos injection increades latency
+Observe that the impact of chaos injection into Catalogue increases latency
 ![imagen](https://user-images.githubusercontent.com/11853819/114231620-a9c6b880-9948-11eb-8c4f-3e1f89741d92.png)
 
 
@@ -229,7 +229,7 @@ chaos run --rollback-strategy=always experiment-latency.json
 [2021-04-09 17:03:10 INFO] The steady-state has deviated, a weakness may have been discovered
 ```
 
-Results are the same with Litmus Chaos and Chaostoolkit. Latency is observer in Grafana and Sock-Shop app is impacted.
+Results are the same with Litmus Chaos and Chaostoolkit. Latency is observed in Grafana and Sock-Shop app is impacted.
 
 Reports can be generated from the output journal.json 
 ```
