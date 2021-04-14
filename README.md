@@ -29,7 +29,7 @@ minikube start --cni=cilium --memory=8192 --cpus=4
 
 ### Clone this repo
 ```
-git clone https://github.com/hivp/chaosengineering-demo.git
+git clone https://github.com/hivp/chaos-engineering-demo.git
 
 cd chaosengineering-demo
 ```
