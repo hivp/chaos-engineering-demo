@@ -31,7 +31,7 @@ minikube start --cni=cilium --memory=8192 --cpus=4
 ```
 git clone https://github.com/hivp/chaos-engineering-demo.git
 
-cd chaosengineering-demo
+cd chaos-engineering-demo
 ```
 
 ### Install the Demo App
