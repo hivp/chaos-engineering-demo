@@ -1,4 +1,4 @@
-# Chaos Engineering Demo with Chaostoolkit - Litmus Chaos - Chaos Mesh
+# Chaos Engineering Demo using Chaostoolkit - Litmus Chaos - Chaos Mesh
 
 Chaos Engineering is the discipline to help proactively improve reliability of systems throught "experiments".
 
